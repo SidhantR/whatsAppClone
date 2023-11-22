@@ -7,7 +7,7 @@ export const checkUser = async (req,res, next) => {
             return res.json({msg: "Email is required", status: 'false'})
         }
         const prisma = getPrismaInstance()
-        const user = await prisma.user.findOne({where: {email}})
+        const user = await prisma.user.findUnique({where: {email}})
         if(!user) {
             return res.json({msg: "User not found", status: false})
         } else {
