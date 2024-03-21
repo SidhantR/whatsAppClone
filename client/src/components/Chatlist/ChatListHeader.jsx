@@ -15,7 +15,9 @@ const ChatListHeader = () => {
             title='New Chat'
             />
             <>
-                <BsThreeDotsVertical />
+                <BsThreeDotsVertical className='text-panel-header-icon cursor-pointer text-xl ' 
+                title="Menu"
+                />
             </>
         </div>
     </div>
