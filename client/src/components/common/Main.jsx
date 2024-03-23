@@ -8,6 +8,7 @@ import { CHECK_USER_ROUTE } from '../../../../server/utils/ApiRoutes.js'
 import { useRouter } from 'next/router.js'
 import { useStateProvider } from '@/context/StateContext.js'
 import { reducerCases } from '@/context/constants.js'
+import Chat from '../Chat/Chat.jsx'
 
 const Main = () => {
     const router = useRouter()
@@ -40,7 +41,8 @@ const Main = () => {
   return (
     <div className='grid grid-cols-main h-screen w-screen max-h-screen max-w-full overflow-hidden '>
         <ChatList />
-        <Empty />
+        {/* <Empty /> */}
+        <Chat />
     </div>
   )
 }
