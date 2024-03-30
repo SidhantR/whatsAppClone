@@ -8,7 +8,7 @@ import axios from "axios";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 
-import { CHECK_USER_ROUTE } from "../../../server/utils/ApiRoutes";
+import { CHECK_USER_ROUTE } from "../utils/ApiRoutes";
 import { useRouter } from "next/router";
 import { useStateProvider } from "@/context/StateContext";
 import { reducerCases } from "@/context/constants";

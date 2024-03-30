@@ -3,7 +3,7 @@ import Input from "@/components/common/Input";
 import { useStateProvider } from "@/context/StateContext";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { ONBOARD_USER_ROUTE } from "../../../server/utils/ApiRoutes";
+import { ONBOARD_USER_ROUTE } from "../utils/ApiRoutes";
 import { reducerCases } from "@/context/constants";
 import { useRouter } from "next/router";
 import axios from "axios"
