@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import ChatList from '../Chatlist/ChatList.jsx'
-import Empty from './Empty'
+import ChatList from './Chatlist/ChatList.jsx'
+import Empty from './Empty.jsx'
 import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth } from '@/utils/FirebaseConfig.js'
-import { CHECK_USER_ROUTE } from '../../utils/ApiRoutes.js'
+import { CHECK_USER_ROUTE, GET_MESSAGES_ROUTE } from '../utils/ApiRoutes.js'
 import { useRouter } from 'next/router.js'
 import { useStateProvider } from '@/context/StateContext.js'
 import { reducerCases } from '@/context/constants.js'
-import Chat from '../Chat/Chat.jsx'
+import Chat from './Chat/Chat.jsx'
 
 const Main = () => {
     const router = useRouter()
@@ -37,6 +37,17 @@ const Main = () => {
         }
         
     })
+
+    useEffect(() => {
+        console.log('currentChatUser', currentChatUser)
+        const getMessages = async() => {
+            const {data: {messages}} = await axios.get(`${GET_MESSAGES_ROUTE}/${userInfo.id}/${currentChatUser.id}`)
+            dispatch({type: reducerCases.SET_MESSAGES, messages})
+        }
+        if(currentChatUser?.id){
+            getMessages()
+        }
+    }, [currentChatUser])
 
   return (
     <div className='grid grid-cols-main h-screen w-screen max-h-screen max-w-full overflow-hidden '>
