@@ -35,7 +35,7 @@ io.on("connection", (socket) => {
     })
     socket.on("send-msg", (data)=> {
         const sendUserSocket = onlineUsers.get(data.id)
-        if(sendUserSocket){
+        if(sendUserSocket){ // if user is online
             socket.to(sendUserSocket).emit("message-recieve", {
                 from: data.from,
                 message: data.message
