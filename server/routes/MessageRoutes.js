@@ -1,9 +1,13 @@
 import { Router } from "express";
-import { addMessage, getMessages } from "../controllers/MessageControllers.js";
+import { addImageMessage, addMessage, getMessages } from "../controllers/MessageControllers.js";
+import multer from "multer";
 
-const router = Router()
+const router = Router();
 
-router.post("/add-message", addMessage)
-router.get('/get-messages/:from/:to', getMessages)
+const uploadImage = multer({ dest: "uploads/images" });
 
-export default router
+router.post("/add-message", addMessage);
+router.get("/get-messages/:from/:to", getMessages);
+router.post("/add-image-message", uploadImage.single("image"), addImageMessage);
+
+export default router;
