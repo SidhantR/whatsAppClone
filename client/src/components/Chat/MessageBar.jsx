@@ -9,8 +9,11 @@ import { MdSend } from "react-icons/md";
 import { reducerCases } from "@/context/constants";
 import EmojiPicker from "emoji-picker-react";
 import PhotoPicker from "../common/PhotoPicker";
-import { headers } from "../../../next.config";
-import CaptureAudio from "../common/CaptureAudio";
+
+import dynamic from "next/dynamic";
+const CaptureAudio = dynamic(() => import("../common/CaptureAudio"), {
+  ssr: false
+});
 
 const MessageBar = () => {
   const [{ userInfo, currentChatUser, socket }, dispatch] = useStateProvider();
