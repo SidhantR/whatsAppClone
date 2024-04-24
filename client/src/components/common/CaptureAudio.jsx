@@ -124,7 +124,7 @@ const CaptureAudio = ({ hide }) => {
         };
         mediaRecorder.start()
       })
-      .catch((err) => [console.log("Error accessing microphone", err)]);
+      .catch((err) => {console.log("Error accessing microphone", err)});
   };
 
   const handleStopRecording = () => {

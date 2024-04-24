@@ -2,6 +2,10 @@ import { useStateProvider } from "@/context/StateContext";
 import React, { useEffect, useRef, useState } from "react";
 import { FaPlay, FaStop } from "react-icons/fa";
 import WaveSurfer from "wavesurfer.js";
+import MessageStatus from "../common/MessageStatus";
+import Avatar from "../common/Avatar";
+import { HOST } from "@/utils/ApiRoutes";
+import { calculateTime } from "@/utils/CalculateTime";
 
 const VoiceMessage = ({ message }) => {
   const [{ currentChatUser, userInfo }] = useStateProvider();
@@ -34,6 +38,7 @@ const VoiceMessage = ({ message }) => {
     };
   }, []);
 
+  console.log(message, 'message0909')
   useEffect(() => {
     const audioURL = `${HOST}/${message.message}`;
     const audio = new Audio(audioURL);
@@ -81,7 +86,7 @@ const VoiceMessage = ({ message }) => {
 
   return (
     <div
-      className={`flex items-center gap-5 text-white px-4 pr-2 py-4 text-sm rounded-md rounded-lg ${
+      className={`flex items-center gap-5 text-white px-4 pr-2 py-4 text-sm rounded-md ${
         message.senderId === currentChatUser.id
           ? "bg-incoming-background"
           : "bg-outgoing-background"
@@ -104,7 +109,9 @@ const VoiceMessage = ({ message }) => {
                     {formatTime(isPlaying? currentPlaybackTime: totalDuration)}
                 </span>
                 <div className=" flex gap-1">
-
+                  <span>{calculateTime(message.createdAt)}</span>
+                  {message.senderId === userInfo.id && 
+                  <MessageStatus messageStatus={message.messageStatus} />}
                 </div>
             </div>
       </div>

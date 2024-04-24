@@ -102,14 +102,15 @@ export const addAudioMessage = async (req,res, next) => {
     try{
         if(req.file){
             const date = Date.now()
-            let fileName = "/uploads/recordings/" + date + req.file.originalname;
+            let fileName = "uploads/recordings/" + date + req.file.originalname;
+            console.log(fileName, 'fileNamefileName', req.file.path)
             renameSync(req.file.path, fileName)
 
             const prisma = getPrismaInstance()
             const {from, to } = req.query
 
             if(from && to){
-                const message = await prisma.message.create({
+                const message = await prisma.messages.create({
                     data: {
                         message: fileName,
                         sender: {connect: {id: parseInt(from )}},
@@ -117,6 +118,7 @@ export const addAudioMessage = async (req,res, next) => {
                         type: "audio"
                     }
                 })
+                console.log('messagemessage', message)
                 return res.status(201).send(message)
             }
             return res.status(400).send("From & to is required")

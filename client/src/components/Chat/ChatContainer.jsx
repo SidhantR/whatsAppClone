@@ -11,6 +11,7 @@ const VoiceMessage = dynamic(() => import("./VoiceMessage"), {
 
 const ChatContainer = () => {
   const [{ messages, currentChatUser, userInfo }] = useStateProvider();
+  console.log(messages, 'messages--------')
   return (
     <div className="h-[80vh] w-full relative flex-grow overflow-auto custom-scrollbar ">
       <div className="bg-chat-background bg-fixed h-full w-full opacity-5 fixed left-0 top-0 z-0">
@@ -20,7 +21,7 @@ const ChatContainer = () => {
             <div className="flex flex-col justify-end w-full gap-1 overflow-auto ">
               {messages?.map((message, index) => (
                 <div
-                  key={message.id}
+                  key={message?.id + new Date()}
                   className={` flex ${
                     message.senderId === currentChatUser.id
                       ? "justify-start"
