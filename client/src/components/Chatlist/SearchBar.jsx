@@ -9,7 +9,7 @@ const SearchBar = () => {
           <BiSearchAlt2 className="text-panel-header-icon cursor-pointer text-l" />
         </div>
         <div>
-            <input type="text" placeholder="Search or Start a new chat" className="bg-transparent text-sm focus:outline-none text-white  " />
+            <input type="text" placeholder="Search or Start new chat" className="bg-transparent text-sm focus:outline-none text-white  " />
         </div>
       </div>
       <div className="pr-5 pl-3 ">

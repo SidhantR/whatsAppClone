@@ -4,9 +4,11 @@ import React, { useEffect, useState } from "react";
 import { BiArrowBack, BiSearchAlt2 } from "react-icons/bi";
 import axios from "axios"
 import ChatListItem from "./ChatListItem";
+import { useStateProvider } from "@/context/StateContext";
 
 const ContactsList = () => {
   const [allContacts, setAllContacts] = useState();
+  const [{}, dispatch] =useStateProvider()
 
   useEffect(() => {
       const getContacts = async () => {
