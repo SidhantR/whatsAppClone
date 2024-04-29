@@ -77,7 +77,6 @@ const Main = () => {
   }, [socket.current]);
 
   useEffect(() => {
-    console.log("currentChatUser", currentChatUser);
     const getMessages = async () => {
       const {
         data: { messages },
@@ -97,7 +96,6 @@ const Main = () => {
       {currentChatUser ? (
         <div className={messagesSearch ? "grid grid-cols-2 " : "grid-cols-2"}>
           <Chat />
-          {console.log(messagesSearch, 'messagesSearch')}
           {messagesSearch && <SearchMessages />}
         </div>
       ) : (

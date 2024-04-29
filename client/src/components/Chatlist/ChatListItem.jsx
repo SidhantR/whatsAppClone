@@ -6,12 +6,12 @@ import { calculateTime } from "@/utils/CalculateTime";
 import MessageStatus from "../common/MessageStatus";
 import { FaCamera, FaMicrophone } from "react-icons/fa";
 
-const ChatListItem = ({ data, isContactPage = false }) => {
+const ChatListItem = ({ data, isContactsPage = false }) => {
   const [{ userInfo, currentChatUser }, dispatch] = useStateProvider();
 
   const handleContactClick = () => {
     // if(currentChatUser?.id === data?.id ){
-    if (!isContactPage) {
+    if (!isContactsPage) {
       dispatch({
         type: reducerCases.CHANGE_CURRENT_CHAT_USER,
         user: {
@@ -45,7 +45,7 @@ const ChatListItem = ({ data, isContactPage = false }) => {
           <div>
             <span className="text-white ">{data?.name}</span>
           </div>
-          {!isContactPage && (
+          {!isContactsPage && (
             <div>
               <span
                 className={`${
@@ -62,7 +62,7 @@ const ChatListItem = ({ data, isContactPage = false }) => {
         <div className="flex border-b border-conversation-border pb-2 pt-1 p3-2">
           <div className="flex justify-between w-full  ">
             <span className="text-secondary line-clamp-1 text-sm ">
-              {isContactPage ? (
+              {isContactsPage ? (
                 data?.about || "\u00A0"
               ) : (
                 <div

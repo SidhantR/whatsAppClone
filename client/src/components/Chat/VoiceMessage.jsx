@@ -38,7 +38,6 @@ const VoiceMessage = ({ message }) => {
     };
   }, []);
 
-  console.log(message, 'message0909')
   useEffect(() => {
     const audioURL = `${HOST}/${message.message}`;
     const audio = new Audio(audioURL);

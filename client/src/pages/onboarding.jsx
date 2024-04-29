@@ -18,7 +18,6 @@ const onboarding = () => {
   useEffect(() => {
     if(!newUser && !userInfo?.email) router.push("/login")
     if(!newUser && userInfo?.email) router.push("/")
-    console.log(userInfo?.email, newUser)
   }, [newUser, userInfo, router ])
 
   const onboardUserHandler = async () => {

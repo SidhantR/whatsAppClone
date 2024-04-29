@@ -6,7 +6,7 @@ export const addMessage = async (req, res, next) => {
     const prisma = getPrismaInstance();
     const { message, from, to } = req.body;
     const getUser = onlineUsers.get(to);
-    console.log(getUser);
+
     if (message && from && to) {
       const newMessage = await prisma.messages.create({
         data: {
@@ -77,13 +77,11 @@ export const getMessages = async (req, res, next) => {
 export const addImageMessage = async (req, res, next) => {
   try {
     if (req.file) {
-      console.log(req.file, "req.filereq.file");
       const date = Date.now();
       let fileName = "uploads/images/" + date + req.file.originalname;
       renameSync(req.file.path, fileName);
       const prisma = getPrismaInstance();
       const { from, to } = req.query;
-      console.log(from, to, "fromto");
       if (from && to) {
         const message = await prisma.messages.create({
           data: {
@@ -108,7 +106,6 @@ export const addAudioMessage = async (req, res, next) => {
     if (req.file) {
       const date = Date.now();
       let fileName = "uploads/recordings/" + date + req.file.originalname;
-      console.log(fileName, "fileNamefileName", req.file.path);
       renameSync(req.file.path, fileName);
 
       const prisma = getPrismaInstance();
@@ -123,7 +120,6 @@ export const addAudioMessage = async (req, res, next) => {
             type: "audio",
           },
         });
-        console.log("messagemessage", message);
         return res.status(201).send(message);
       }
       return res.status(400).send("From & to is required");
@@ -167,14 +163,12 @@ export const getInitialContactWithMessage = async (req, res, next) => {
     messages.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
     const users = new Map();
     const messageStatusChange = [];
-    console.log(messages, 'messagesmessagesmessages')
     messages.forEach((msg) => {
       const isSender = msg.senderId === userId;
       const calculatedId = isSender ? msg.recieverId : msg.senderId;
       if (msg.messageStatus === "sent") {
         messageStatusChange.push(msg.id);
       }
-      console.log(messageStatusChange, 'messageStatusChangemessageStatusChange')
       const {
         id,
         type,

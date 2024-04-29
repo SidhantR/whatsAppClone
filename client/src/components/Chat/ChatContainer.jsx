@@ -11,7 +11,6 @@ const VoiceMessage = dynamic(() => import("./VoiceMessage"), {
 
 const ChatContainer = () => {
   const [{ messages, currentChatUser, userInfo }] = useStateProvider();
-  console.log(messages, 'messages--------')
   return (
     <div className="h-[80vh] w-full relative flex-grow overflow-auto custom-scrollbar ">
       <div className="bg-chat-background bg-fixed h-full w-full opacity-5 fixed left-0 top-0 z-0">
@@ -28,7 +27,7 @@ const ChatContainer = () => {
                       : "justify-end"
                   }`}
                 >
-                  {console.log(currentChatUser, "message, ", message)}
+                  
                   {message.type === "text" && (
                     <div
                       className={`text-white px-2 py-[5px] text-sm s rounded-md flex gap-2 items-end max-w-[45%] 
