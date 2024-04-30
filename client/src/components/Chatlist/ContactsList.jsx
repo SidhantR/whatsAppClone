@@ -15,6 +15,8 @@ const ContactsList = () => {
   useEffect(() => {
     if (searchTerm.length) {
       const filteredData = {};
+      // data format - { S: [{id, name}]}
+
       Object.keys(allContacts).forEach((key) => {
         filteredData[key] = allContacts[key].filter((obj) =>
           obj.name.toLowerCase().includes(searchTerm.toLowerCase())
