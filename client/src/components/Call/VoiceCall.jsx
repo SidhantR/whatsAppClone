@@ -1,6 +1,6 @@
 import { useStateProvider } from "@/context/StateContext";
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Container = dynamic(() => import("./Container"), { ssr: false });
 
@@ -13,7 +13,7 @@ const VoiceCall = () => {
         to: voiceCall.id,
         from: {
           id: userInfo.id,
-          profilePicture: userInfo.profilePicture,
+          profilePicture: userInfo.profileImage,
           name: userInfo.name
         },
         callType: voiceCall.callType,
